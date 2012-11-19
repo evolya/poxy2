@@ -134,71 +134,40 @@
 <XPD:REF name="DiagramOwner">pK7+CjwW8kmbGtg8CRE3rAAA</XPD:REF>
 <XPD:OBJ name="DiagramView" type="UMLClassDiagramView" guid="h1o0PZgTdkuqFQOngYd6ZAAA">
 <XPD:REF name="Diagram">vy8YwhW2TUSzSVvklUJl4QAA</XPD:REF>
-<XPD:ATTR name="#OwnedViews" type="integer">2</XPD:ATTR>
-<XPD:OBJ name="OwnedViews[0]" type="UMLSubsystemView" guid="V0e2cr4mpUSNEjskYFMjigAA">
+<XPD:ATTR name="#OwnedViews" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="OwnedViews[0]" type="UMLSubsystemView" guid="5WMLqaOIkUic4KovlLJMUAAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Left" type="integer">652</XPD:ATTR>
-<XPD:ATTR name="Top" type="integer">100</XPD:ATTR>
-<XPD:ATTR name="Width" type="integer">120</XPD:ATTR>
-<XPD:ATTR name="Height" type="integer">70</XPD:ATTR>
-<XPD:REF name="Model">2YJ1mE38CUmJjHBjCTLgIgAA</XPD:REF>
-<XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="Jb3nMdlp4Em1GWNE6b5E6AAA">
-<XPD:OBJ name="NameLabel" type="LabelView" guid="V3t8AzGBM0+fDTCXJOIXzAAA">
+<XPD:ATTR name="Left" type="integer">100</XPD:ATTR>
+<XPD:ATTR name="Top" type="integer">44</XPD:ATTR>
+<XPD:ATTR name="Width" type="integer">497</XPD:ATTR>
+<XPD:ATTR name="Height" type="integer">509</XPD:ATTR>
+<XPD:REF name="Model">bGYGqFK/HU+5jK0K5YcLdwAA</XPD:REF>
+<XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="9w7PLEVo80a17HldotM7sgAA">
+<XPD:OBJ name="NameLabel" type="LabelView" guid="puCN7v9A0kiDm7FxEg5GZwAA">
 <XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">workshop.evolya.fr</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">Poxy2</XPD:ATTR>
 </XPD:OBJ>
-<XPD:OBJ name="StereotypeLabel" type="LabelView" guid="3IqnV38wrkWeYpoKH/ry1wAA">
+<XPD:OBJ name="StereotypeLabel" type="LabelView" guid="wYBPeUhTpkSbdbVwmqQeUwAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
 </XPD:OBJ>
-<XPD:OBJ name="PropertyLabel" type="LabelView" guid="ku+GBB7rSEmv0pfoQid48gAA">
-<XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
-</XPD:OBJ>
-</XPD:OBJ>
-<XPD:OBJ name="OperationCompartment" type="UMLOperationCompartmentView" guid="srUrz7yqfE2QhVXEaknelgAA">
-<XPD:REF name="Model">2YJ1mE38CUmJjHBjCTLgIgAA</XPD:REF>
-</XPD:OBJ>
-</XPD:OBJ>
-<XPD:OBJ name="OwnedViews[1]" type="UMLSubsystemView" guid="89ee0Zov9EiSZSPiG4GSCQAA">
-<XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
-<XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Left" type="integer">392</XPD:ATTR>
-<XPD:ATTR name="Top" type="integer">244</XPD:ATTR>
-<XPD:ATTR name="Width" type="integer">120</XPD:ATTR>
-<XPD:ATTR name="Height" type="integer">70</XPD:ATTR>
-<XPD:REF name="Model">/U6BuCOHAUyCQSZcYgebvgAA</XPD:REF>
-<XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="u3N05xv5aE2z9fuzSNFbwAAA">
-<XPD:OBJ name="NameLabel" type="LabelView" guid="Dr/3pEnSM0uKfyme6mw7wAAA">
-<XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">The new project</XPD:ATTR>
-</XPD:OBJ>
-<XPD:OBJ name="StereotypeLabel" type="LabelView" guid="Q4FkhEcL0Ee1O8yKo3uEQwAA">
-<XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
-</XPD:OBJ>
-<XPD:OBJ name="PropertyLabel" type="LabelView" guid="dkkkPFCxYkmE/DunNxtfCAAA">
+<XPD:OBJ name="PropertyLabel" type="LabelView" guid="s12f0b/svEaYsLW84kK7pwAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="OperationCompartment" type="UMLOperationCompartmentView" guid="Ep1Q6f5C9kWSO0A0FPU0rAAA">
-<XPD:REF name="Model">/U6BuCOHAUyCQSZcYgebvgAA</XPD:REF>
+<XPD:OBJ name="OperationCompartment" type="UMLOperationCompartmentView" guid="D6LNt2fbMkWj1g/ewfVPpgAA">
+<XPD:REF name="Model">bGYGqFK/HU+5jK0K5YcLdwAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:ATTR name="#OwnedElements" type="integer">2</XPD:ATTR>
-<XPD:OBJ name="OwnedElements[0]" type="UMLSubsystem" guid="2YJ1mE38CUmJjHBjCTLgIgAA">
-<XPD:ATTR name="Name" type="string">workshop.evolya.fr</XPD:ATTR>
+<XPD:ATTR name="#OwnedElements" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="OwnedElements[0]" type="UMLSubsystem" guid="bGYGqFK/HU+5jK0K5YcLdwAA">
+<XPD:ATTR name="Name" type="string">Poxy2</XPD:ATTR>
 <XPD:REF name="Namespace">pK7+CjwW8kmbGtg8CRE3rAAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">2</XPD:ATTR>
-<XPD:REF name="Views[0]">V0e2cr4mpUSNEjskYFMjigAA</XPD:REF>
-<XPD:REF name="Views[1]">srUrz7yqfE2QhVXEaknelgAA</XPD:REF>
-</XPD:OBJ>
-<XPD:OBJ name="OwnedElements[1]" type="UMLSubsystem" guid="/U6BuCOHAUyCQSZcYgebvgAA">
-<XPD:ATTR name="Name" type="string">The new project</XPD:ATTR>
-<XPD:REF name="Namespace">pK7+CjwW8kmbGtg8CRE3rAAA</XPD:REF>
-<XPD:ATTR name="#Views" type="integer">2</XPD:ATTR>
-<XPD:REF name="Views[0]">89ee0Zov9EiSZSPiG4GSCQAA</XPD:REF>
-<XPD:REF name="Views[1]">Ep1Q6f5C9kWSO0A0FPU0rAAA</XPD:REF>
+<XPD:REF name="Views[0]">5WMLqaOIkUic4KovlLJMUAAA</XPD:REF>
+<XPD:REF name="Views[1]">D6LNt2fbMkWj1g/ewfVPpgAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[3]" type="UMLModel" guid="ukjWoymMxkW1DLQvv/LflgAA">
