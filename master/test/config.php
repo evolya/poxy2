@@ -13,6 +13,7 @@ require_once '../src/poxy2_plugin_noscript.php';
 require_once '../src/poxy2_plugin_logger.php';
 require_once '../src/poxy2_plugin_cookiemonster.php';
 require_once '../src/poxy2_plugin_browser.php';
+require_once '../src/poxy2_plugin_search.php';
 
 // Init poxy
 $poxy = new PoxyII();
@@ -24,7 +25,7 @@ $poxy->addPlugin(new PoxyII_Plugin_Cache($cacheDir));*/
 
 // CookieMonster
 $cookieMonster = new PoxyII_Plugin_CookieMonster(array(
-		'*@*.evolya.fr'
+	'*@*.evolya.fr'
 ));
 $poxy->addPlugin($cookieMonster);
 
@@ -36,6 +37,10 @@ $noScript = new PoxyII_Plugin_NoScript(array(
 ));
 $noScript->enableWebservice = true;
 $poxy->addPlugin($noScript);
+
+// Search
+$search = new PoxyII_Plugin_Search();
+$poxy->addPlugin($search);
 
 // AdBlock
 /*if ($poxy->hasPlugin('cache')) {

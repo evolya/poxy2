@@ -98,7 +98,7 @@ include 'config.php';
 $poxy->setConfig(array('script_url' => 'relay.php'));
 
 // Required library
-include '../../evolya.php2js/src/php2js.php';
+include 'php2js.php';
 
 // Create a new browser
 $browser = new PoxyII_Plugin_Browser();
@@ -108,18 +108,18 @@ $poxy->addPlugin($browser);
 
 // Change the browser URL when setup is ready 
 $poxy->subscribeEvent('browser:afterBrowserInitialized', function (JavascriptPoxyBrowser $browser) {
-	$browser->setURL("http://localhost/evolya.poxy2/test/test1.html");
+	$browser->setURL("http://localhost/poxy2/master/test/test1.html");
 });
 
 // Debug
 $poxy->subscribeEvent('browser:beforeURLChanged', function (JavascriptPoxyBrowser $browser, $url) {
-	if ($console->log) $console->log("setURL: " . $url);
+	if ($console->log) $console->log("[Poxy2] setURL: " . $url);
 });
 $poxy->subscribeEvent('browser:onStateChanged', function (JavascriptPoxyBrowser $browser, $state) {
-	if ($console->log) $console->log("State changed: " . $state);
+	if ($console->log) $console->log("[Poxy2] State changed: " . $state);
 });
 $poxy->subscribeEvent('browser:onPageChanged', function (JavascriptPoxyBrowser $browser, $url) {
-	if ($console->log) $console->log("URL changed: " . $url);
+	if ($console->log) $console->log("[Poxy2] URL changed: " . $url);
 });
 
 // Display the browser

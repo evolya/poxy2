@@ -46,14 +46,14 @@
  * @see			http://code.google.com/p/phproxyimproved/ Improved proxy project
  */
 class PoxyII {
-	
+
 	/**
 	 * @var string
 	 */
 	const VERSION = '2.0.7';
-	
+
 	/**
-	 * @var mixed[]
+	 * @var mixed[] Current configuration
 	 */
 	protected $config = array(
 		'remove_scripts'  			=> false,
@@ -81,28 +81,28 @@ class PoxyII {
 		'script_url'				=> null,
 		'debug'						=> false
 	);
-	
+
 	/**
-	 * @var mixed[]
+	 * @var mixed[] List of events listeners
 	 */
 	protected $eventSubscriptions = array();
 	
 	/**
-	 * @var PoxyII_Plugin[]
+	 * @var PoxyII_Plugin[] List of installed plugins
 	 */
 	protected $plugins = array();
 
 	/**
-	 * Constructor.
+	 * Constructor of this class
 	 */
 	public function __construct() {
-		
-		// HTTPS
+
+		// Detect HTTPS (TLS/SSL)
 		$https = (isset($_ENV['HTTPS']) && $_ENV['HTTPS'] == 'on') || $_SERVER['SERVER_PORT'] == 443;
-		
-		// Host
+
+		// Retrieve host name
 		$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : (isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : 'localhost');
-		
+
 		// Script URL
 		$this->config['script_url'] =
 			'http'
@@ -111,10 +111,12 @@ class PoxyII {
 			. $host
 			. ($_SERVER['SERVER_PORT'] != 80 && $_SERVER['SERVER_PORT'] != 443 ? ':' . $_SERVER['SERVER_PORT'] : '')
 			. $_SERVER['PHP_SELF'];
-		
+
 	}
 
 	/**
+	 * Change configuration settings.
+	 *
 	 * @param mixed[] $config
 	 * @return void
 	 */
@@ -123,8 +125,14 @@ class PoxyII {
 	}
 	
 	/**
+	 * Return configuration settings.
+	 *
+	 * Two syntaxes are available :
+	 *	mixed[] getConfig()
+	 *	mixed getConfig($key)
+	 *
 	 * @param string|null $key
-	 * @return mixed
+	 * @return mixed[]|mixed
 	 */
 	public function getConfig($key = null) {
 		if ($key === null) {
@@ -140,23 +148,23 @@ class PoxyII {
 	 * @throws PoxyII_Exception If a plugin with this name allready exists.
 	 */
 	public function addPlugin(PoxyII_Plugin $plugin) {
-		
+
 		// Plugin name
 		$name = $plugin->getPluginName();
-		
+
 		// Plugin allready exists
 		if (array_key_exists($name, $this->plugins)) {
 			throw new PoxyII_Exception("Plugin '{$name}' allready exists");
 		}
-		
+
 		// Add the plugin 
 		$this->plugins[$name] = $plugin;
-		
+
 		// Initialize
 		$plugin->init($this);
-		
+
 	}
-	
+
 	/**
 	 * Check if a plugin exists.
 	 * 
@@ -166,7 +174,7 @@ class PoxyII {
 	public function hasPlugin($name) {
 		return array_key_exists($name, $this->plugins);
 	}
-	
+
 	/**
 	 * Search a plugin by his name.
 	 * 
@@ -176,7 +184,7 @@ class PoxyII {
 	public function getPluginByName($name) {
 		return $this->plugins[$name];
 	}
-	
+
 	/**
 	 * Search a plugin by his class name.
 	 *
@@ -191,19 +199,24 @@ class PoxyII {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Add local domain to black list.
 	 * 
 	 * @return void
 	 */
 	public function ignoreLocalDomain() {
+
+		// Pattern to black list
 		$pattern = "/^(127\.|192\.168\.|10\.|172\.(1[6-9]|2[0-9]|3[01])\.|localhost)$/i";
-		if (!in_array($this->config['forbidden_remote_hosts'])) {
+
+		// Add the black list record only if it doesn't exists allready
+		if (!in_array($pattern, $this->config['forbidden_remote_hosts'])) {
 			$this->config['forbidden_remote_hosts'][] = $pattern;
 		}
+
 	}
-	
+
 	/**
 	 * Execute a GET request.
 	 * 
@@ -211,40 +224,40 @@ class PoxyII {
 	 * @return PoxyII_HttpResponse
 	 */
 	public function get($url) {
-		
+
 		// Create a new request
 		$request = new PoxyII_HttpRequest();
-		
+
 		// Parse parameters
 		$params = array();
 		if (strpos($url, '?') !== false) {
 			list($url, $params) = explode('?', $url, 2);
 			$params = explode('&', $params);
 		}
-		
+
 		// Set request URL 
 		$request->setURL($url);
-		
+
 		// Set request method
 		$request->method = 'GET';
-		
+
 		// Set get data
 		$request->_GET = $params;
-		
+
 		// Execute the request, and retrieve the response
 		$response = $request->execute($this);
-		
+
 		// Clean response
 		$this->clean_response($response);
-		
+
 		// Copy host struct
 		$response->host = $request->host;
-		
+
 		// Return the response
 		return $response;
-		
+
 	}
-	
+
 	/**
 	 * Execute a POST request.
 	 * 
@@ -253,12 +266,13 @@ class PoxyII {
 	 * @return PoxyII_HttpResponse
 	 */
 	public function post($url, $data) {
-		
+
 		// Create a new request
 		$request = new PoxyII_HttpRequest();
-		
+
+		// Méthode
 		$request->method = 'POST';
-		
+
 		$params = array();
 		// TODO Note: c'est foireux ce truc! Et puis on passe les paramètres
 		// dans le _GET ! Mais en même temps c'est le code original...
@@ -266,15 +280,15 @@ class PoxyII {
 			list($url, $params) = explode('?', $url, 2);
 			$params = explode('&', $params);
 		}
-		
+
 		$request->setURL($url);
-		
+
 		$request->_GET = $params;
-		
+
 		$request->_PORT = $data;
-		
+
 		$response = $request->execute($this);
-		
+
 		$this->clean_response($response);
 		
 		// On copie le tableau de structure de l'url
@@ -283,7 +297,7 @@ class PoxyII {
 		return $response;
 		
 	}
-	
+
 	/**
 	 * Relay the current request, and send the response to standard output.
 	 * 
@@ -292,7 +306,7 @@ class PoxyII {
 	public function relay () {
 
 		try {
-			
+
 			// Create a request object according to the current request
 			$request = PoxyII_HttpRequest::createFromCurrentRequest();
 
@@ -300,40 +314,40 @@ class PoxyII {
 			if (!$this->broadcastEvent('beforeRequestHandled', array($request, $this))) {
 				return;
 			}
-			
+
 			// Create the response
 			$response = $this->handleRequest($request);
-			
+
 			// Event after
 			$this->broadcastEvent('afterRequestHandled', array($request, $response, $this));
-	
+
 			// Proxify the response if the content type match the configuration
 			if (in_array($response->content_type, $this->getConfig('proxify'))) {
 				$response->proxify($this);
 			}
-			
+
 			// Enable compression
 			// TODO According to Accept header ?
 			$gzip = $this->getConfig('compress_output') && extension_loaded('zlib') && !ini_get('zlib.output_compression');
-			
+
 			// Event before
 			if (!$this->broadcastEvent('beforeExecuteResponse', array($response, $this))) {
 				return;
 			}
-			
+
 			// Return the response
 			$response->execute($gzip);
-			
+
 			// Event after
 			$this->broadcastEvent('afterExecuteResponse', array($response, $this));
-			
+
 		}
 		catch (Exception $ex) {
 			// TODO Handle exceptions
 		}
 
 	}
-	
+
 	/**
 	 * Handle a request.
 	 * 
@@ -341,7 +355,7 @@ class PoxyII {
 	 * @return PoxyII_HttpResponse 
 	 */
 	public function handleRequest(PoxyII_HttpRequest $request) {
-		
+
 		// Debug
 		if ($this->config['debug']) {
 			echo "[handleRequest]\nInitial Request = $request\n";
@@ -349,18 +363,18 @@ class PoxyII {
 
 		// Create a response
 		$response = new PoxyII_HttpResponse();
-		
+
 		// Add a via field (according to the configuration)
 		if ($this->config['expose_poxy']) {
 			$response->headers['via'] = array(array('Via', $request->server_addr . ' (PoxyII v' . self::VERSION . ')'));
 		}
-		
+
 		// Copy host struct
 		$response->host = $request->host;
-		
+
 		// Name of the property containing the URL
 		$varName = $this->config['url_var_name'];
-		
+
 		// Redirect POST to GET
 		if (isset($request->_POST[$varName]) && !isset($request->_GET[$varName])) {
 			// Redirection
@@ -370,7 +384,7 @@ class PoxyII {
 				$request->url . '?' . $varName . '=' . $this->encode_url($request->_POST[$varName]);
 			return $response;
 		}
-		
+
 		// Trigger a bad request error if the URL parameter wasn't sent
 		if (!isset($request->_GET[$varName])) {
 			$response->code = 400;
@@ -380,80 +394,80 @@ class PoxyII {
 
 		// Create a request to the remote server
 		$remote = $this->createRemoteRequest($request, $response);
-		
+
 		// Si $remote est invalide, c'est parce qu'il n'est pas possible de créer
 		// une connexion vers l'hôte distant en raison de pbs de sécurités
 		if (!is_object($remote)) {
-			
+
 			switch ($remote) {
-				
+
 				case 400 :
 					$response->code = 400;
 					$response->status = 'Invalid URL';
 					break;
-					
+
 				case 406 :
 					$response->code = 406;
 					$response->status = 'Hotlinking Not Acceptable';
 					break;
-					
+
 				case 403 :
 					$response->code = 403;
 					$response->status = 'Blacklisted';
 					break;
-					
+
 				default :
 					$response->code = 500;
 					$response->status = 'Internal Server Error';
 					break;
-				
+
 			}
 
 			// Error
 			if ($this->config['debug']) {
 				echo "Error= $remote\n";
 			}
-			
+
 			// Return the response object
 			return $response;
-			
+
 		}
-		
+
 		// Remove URL parameter
 		unset($remote->_GET[$varName]);
-		
+
 		// Clean the request
 		$this->clean_request($remote);
-		
+
 		// Debug
 		if ($this->config['debug']) {
 			echo "\nRemote Request = $remote\n";
 		}
-		
+
 		// Event before
 		if ($this->broadcastEvent('beforeExecuteRequest', array($remote, $response))) {
-		
+
 			// Execute the request
 			$remote->execute($this, $response);
-		
+
 		}
-		
+
 		// Event after
 		$this->broadcastEvent('afterExecuteRequest', array($remote, $response));
-		
+
 		// Clean the response
 		$this->clean_response($response);
-		
+
 		// Debug
 		if ($this->config['debug']) {
 			echo "Final Response= $response\n";
 		}
-		
+
 		// Return the response object
 		return $response;
-		
+
 	}
-	
+
 	/**
 	 * Clean a request.
 	 * 
