@@ -1,0 +1,165 @@
+@CHARSET "UTF-8";
+
+/* Main container */
+
+.poxy2-browser {
+	display: block;
+ 	margin: 0;
+	padding: 0;
+	position: relative;
+	font-family: Verdana, Arial, sans;
+	font-size: 12px;
+	z-index: 1;
+}
+
+/* Table container */
+
+.poxy2-browser > table {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	border-spacing: 0;
+	border-collapse: collapse;
+	border: none;
+}
+
+/* Top-bar */
+
+.poxy2-browser tr.poxy2-topbar {
+	height: 30px;
+	background-color: #eee;
+	border-bottom: 1px solid #ccc;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* Navigation */
+
+.poxy2-browser tr.poxy2-topbar td {
+	white-space: nowrap;
+	white-space: pre;
+}
+
+.poxy2-browser a.poxy2-bt {
+	display: inline-block;
+	background: #eee;
+	height: 16px;
+	padding: 3px;
+	margin: 3px;
+	border: 1px solid #eee;
+	border-radius: 2px;
+	color: #666;
+	cursor: pointer;
+	text-align: center;
+	vertical-align: middle;
+	position: relative;
+}
+
+.poxy2-browser a.poxy2-bt:hover {
+	color: #111;
+	border-color: #ccc;
+}
+
+.poxy2-browser a.poxy2-bt:active {
+	border-color: #666;
+}
+
+.poxy2-browser a.poxy2-bt div.poxy-bt-popup {
+	display: none;
+	border: 1px solid #ccc;
+	background: #eee;
+	width: auto;
+	position: absolute;
+	top: 22px;
+	right: -1px;
+	text-indent: 0;
+	cursor: default;
+	min-width: 40px;
+	min-height: 2px;
+	text-align: left;
+	vertical-align: baseline;
+}
+
+.poxy2-browser a.poxy2-bt div.poxy-bt-popup.visible {
+	display: block;
+	color: #666;
+}
+
+/* Address bar */
+
+.poxy2-browser tr.poxy2-topbar td + td {
+
+}
+
+.poxy2-browser tr.poxy2-topbar input.poxy2-addressbar {
+	border-radius: 3px;
+	border: 1px solid #bbb;
+	width: 98%;
+	margin: 0;
+	padding: 2px 1%;
+	height: 20px;
+	outline: 0;	
+}
+
+/* Option panel */
+
+.poxy2-browser tr.poxy2-topbar td + td + td {
+	white-space: nowrap;
+	white-space: pre;
+}
+
+/* Viewport */
+
+.poxy2-browser tr.poxy2-viewport {
+	
+}
+
+/* Iframe */
+
+.poxy2-browser tr.poxy2-viewport > td > iframe {
+	height: 100%;
+	width: 100%;
+	border: none;
+	margin: 0;
+	padding: 0;
+	overflow: auto;
+}
+
+/* Infobar */
+
+.poxy2-browser tr.poxy2-infobar {
+	display: none;
+}
+
+.poxy2-browser tr.poxy2-infobar.active {
+	display: table-row;
+}
+
+.poxy2-browser tr.poxy2-infobar td {
+	height: 0;
+	padding: 2px 6px;
+}
+
+.poxy2-browser tr.poxy2-infobar.active td {
+	height: 20px;
+}
+
+.poxy2-browser tr.poxy2-infobar td.info {
+	border-top: 1px solid #b8cfea;
+	background-color: #d5e3f4;
+}
+
+.poxy2-browser tr.poxy2-infobar td.warn {
+	border-top: 1px solid #f1cc98;
+	background-color: #ede0b2;
+}
+
+.poxy2-browser tr.poxy2-infobar td.error {
+	border-top: 1px solid #d06c52;
+	background-color: #f3d6ce;
+}

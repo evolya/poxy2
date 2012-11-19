@@ -1,0 +1,26 @@
+<h1>Welcome to the test page</h1>
+
+<h3>A <i>tag</i></h3>
+<li><a href="test2.html">Standard link</a></li>
+<li>Javascript links : <a href="javascript:alert('OK');">inline</a> or <a href="javascript:;" onclick="alert('OK');return false;">with event</a></li>
+
+<h3>Javascript</h3>
+<p>Enabled: <span id="js" style="color:red">OFF</span></p>
+<script type="text/javascript">
+var span = document.getElementById('js');
+span.innerHTML = 'ON';
+span.style.color = 'green';
+</script>
+
+<h3>CSS Stylesheet</h3>
+<p>CSS links rewriting: <span id="css" style="color:red"></span></p>
+<style type="text/css">
+/* Default state */
+#css:before { content: "OFF"; }
+</style>
+
+<h3>IMG <i>tag</i></h3>
+<p><img src="images/sample.png" /></p>
+
+<h3>IFRAME <i>tag</i></h3>
+<iframe width="200" height="113" src="http://www.youtube-nocookie.com/embed/Ze_mWpklkKQ?rel=0" frameborder="0" allowfullscreen></iframe>
